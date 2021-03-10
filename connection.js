@@ -1,18 +1,20 @@
 var mysql = require('mysql');
 
-//database connection
 
-const conn = mysql.createConnection({
-    host: 'localhost',
-    username: 'root',
-    password: '',
-    database: 'DB_restAPI'
-
-});
+const conn = mysql.createConnection(
+    {
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'dbwisuda',
+        port: '3306'
+    }
+);
 
 conn.connect((err) => {
     if (err) throw err;
-    console.log('mysql Running Good');
-})
+
+    console.log('mySQL Running Success');
+});
 
 module.exports = conn;
