@@ -75,3 +75,20 @@ exports.editData = function (req, res) {
         }
     );
 }
+
+//delet data by id
+
+exports.removeData = function (req, res) {
+    var id = req.body.id_mhs;
+
+    connection.query(`DELETE FROM mahasiswa WHERE id_mhs=?`,
+        [id],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok('Data has been Removed', res);
+            }
+        }
+    );
+}
