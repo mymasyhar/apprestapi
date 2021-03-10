@@ -54,3 +54,24 @@ exports.addMahasiswa = function (req, res) {
     );
 
 }
+
+//edit data by id
+
+exports.editData = function (req, res) {
+
+    var id = req.body.id_mhs;
+    var nim = req.body.nim;
+    var nama = req.body.nama;
+    var prodi = req.body.prodi;
+
+    connection.query(`UPDATE mahasiswa SET nim=?, nama=?, prodi=? WHERE id_mhs=?`,
+        [nim, nama, prodi, id],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok('Edit Data Success', res);
+            }
+        }
+    );
+}
