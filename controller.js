@@ -9,11 +9,27 @@ exports.index = function (req, res) {
 
 //show student data
 exports.getMahasiswa = function (req, res) {
-    connection.query(`SELECT * FROM mahasiswa`, function (error, row, fields) {
+    connection.query(`SELECT * FROM mahasiswa`, function (error, rows, fields) {
         if (error) {
             connection.log('error');
         } else {
-            response.ok(row, res);
+            response.ok(rows, res);
         }
     });
 };
+
+//show student by id 
+exports.getMahasiswaById = function (req, res) {
+
+    let id = req.params.id;
+
+    connection.query(`SELECT * FROM mahasiswa WHERE id_mhs = ?`, [id],
+        function (error, rows, fields) {
+            if (error) {
+                connection.log('error');
+            } else {
+                response.ok(rows, res);
+            }
+        }
+    )
+}
